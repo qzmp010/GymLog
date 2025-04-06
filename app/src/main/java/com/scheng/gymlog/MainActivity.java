@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.scheng.gymlog.database.GymLogRepository;
 import com.scheng.gymlog.database.entities.GymLog;
 import com.scheng.gymlog.databinding.ActivityMainBinding;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     binding.logDisplayTextValue.setMovementMethod(new ScrollingMovementMethod());
 
+    updateDisplay();
     binding.logButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -43,17 +45,23 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void insertGymLogRecord() {
+    if (exercise.isEmpty()) {
+      return;
+    }
     GymLog log = new GymLog(exercise, weight, reps);
     repository.insertGymLog(log);
   }
 
   private void updateDisplay() {
-    String currentInfo = binding.logDisplayTextValue.getText().toString();
-    Log.d(TAG, "Current Info: " + currentInfo);
-    String newDisplay = String.format("Exercise: %s%nWeight: %.2f%nReps: %d%n=-=-=%n%s",
-        exercise, weight, reps, currentInfo);
-    binding.logDisplayTextValue.setText(newDisplay);
-    Log.i(TAG, repository.getAllLogs().toString());
+    ArrayList<GymLog> allLogs = repository.getAllLogs();
+    if (allLogs.isEmpty()) {
+      binding.logDisplayTextValue.setText(R.string.nothing_to_show_time_to_hit_the_gym);
+    }
+    StringBuilder sb = new StringBuilder();
+    for (GymLog log : allLogs) {
+      sb.append(log);
+    }
+    binding.logDisplayTextValue.setText(sb.toString());
   }
 
   private void getInformationFromDisplay() {
