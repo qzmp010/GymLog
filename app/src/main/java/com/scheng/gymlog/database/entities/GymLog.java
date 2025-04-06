@@ -1,9 +1,9 @@
-package com.scheng.gymlog.Database.entities;
+package com.scheng.gymlog.database.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import com.scheng.gymlog.Database.GymLogDatabase;
-import java.time.LocalDate;
+import com.scheng.gymlog.database.GymLogDatabase;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity(tableName = GymLogDatabase.GYM_LOG_TABLE)
@@ -15,13 +15,13 @@ public class GymLog {
   private String exercise;
   private double weight;
   private int reps;
-  private LocalDate date;
+  private LocalDateTime date;
 
   public GymLog(String exercise, double weight, int reps) {
     this.exercise = exercise;
     this.weight = weight;
     this.reps = reps;
-    date = LocalDate.now();
+    date = LocalDateTime.now();
   }
 
   public int getId() {
@@ -56,12 +56,23 @@ public class GymLog {
     this.reps = reps;
   }
 
-  public LocalDate getDate() {
+  public LocalDateTime getDate() {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate(LocalDateTime date) {
     this.date = date;
+  }
+
+  @Override
+  public String toString() {
+    return "GymLog{" +
+        "id=" + id +
+        ", exercise='" + exercise + '\'' +
+        ", weight=" + weight +
+        ", reps=" + reps +
+        ", date=" + date +
+        '}';
   }
 
   @Override
