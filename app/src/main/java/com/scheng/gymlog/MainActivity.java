@@ -74,11 +74,18 @@ public class MainActivity extends AppCompatActivity {
         updateDisplay();
       }
     });
+
+    binding.exerciseInputEditText.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        updateDisplay();
+      }
+    });
   }
 
   private void loginUser(Bundle savedInstanceState) {
     //check shared preference for logged in user read from the file
-    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(
+    SharedPreferences sharedPreferences = getSharedPreferences(
         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
     loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
@@ -119,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
-    MenuItem item =menu.findItem(R.id.logoutMenuItem);
+    MenuItem item = menu.findItem(R.id.logoutMenuItem);
     item.setVisible(true);
     if (user == null) {
       return false;
@@ -170,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences = getApplicationContext()
         .getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
     SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
-    sharedPrefEditor.putInt(getString(R.string.preference_userId_key), LOGGED_OUT);
+    sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
     sharedPrefEditor.apply();
   }
 
