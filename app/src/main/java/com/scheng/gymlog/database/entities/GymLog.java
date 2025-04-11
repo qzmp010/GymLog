@@ -1,5 +1,6 @@
 package com.scheng.gymlog.database.entities;
 
+import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -76,14 +77,12 @@ public class GymLog {
     this.userId = userId;
   }
 
+  @SuppressLint("DefaultLocale")
   @NonNull
   @Override
   public String toString() {
-    return exercise + '\n' +
-        "weight: " + weight + '\n' +
-        "reps: " + reps + '\n' +
-        "date: " + date.toString() + '\n' +
-        "=-=-=-=-=-=-=\n";
+    return String.format("Exercise: %s%nWeight: %s%nReps: %d%nDate: %s", exercise, weight, reps,
+        String.format("%1$tD %1$tr", date));
   }
 
   @Override
