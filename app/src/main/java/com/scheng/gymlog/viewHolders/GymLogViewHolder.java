@@ -8,14 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.scheng.gymlog.R;
 
 public class GymLogViewHolder extends RecyclerView.ViewHolder {
+
   private final TextView gymLogViewItem;
+
   private GymLogViewHolder(View gymLogView) {
     super(gymLogView);
     gymLogViewItem = gymLogView.findViewById(R.id.recyclerItemTextView);
   }
 
-  public void bind (String text) {
-    gymLogViewItem.setText(text)  ;
+  public void bind(String text) {
+    gymLogViewItem.setText(text);
   }
 
   static GymLogViewHolder create(ViewGroup parent) {

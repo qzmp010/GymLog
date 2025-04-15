@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import com.scheng.gymlog.database.entities.GymLog;
 
 public class GymLogAdapter extends ListAdapter<GymLog, GymLogViewHolder> {
+
   public GymLogAdapter(@NonNull DiffUtil.ItemCallback<GymLog> diffCallback) {
     super(diffCallback);
   }
@@ -24,6 +25,7 @@ public class GymLogAdapter extends ListAdapter<GymLog, GymLogViewHolder> {
   }
 
   public static class GymLogDiff extends DiffUtil.ItemCallback<GymLog> {
+
     @Override
     public boolean areItemsTheSame(@NonNull GymLog oldItem, @NonNull GymLog newItem) {
       return oldItem == newItem;

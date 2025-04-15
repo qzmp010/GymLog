@@ -7,6 +7,7 @@ import java.util.Objects;
 
 @Entity(tableName = GymLogDatabase.USER_TABLE)
 public class User {
+
   @PrimaryKey(autoGenerate = true)
   private int id;
   private String username;

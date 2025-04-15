@@ -9,9 +9,10 @@ import com.scheng.gymlog.database.entities.GymLog;
 import java.util.List;
 
 public class GymLogViewModel extends AndroidViewModel {
+
   private final GymLogRepository repository;
 
-  public GymLogViewModel (Application application) {
+  public GymLogViewModel(Application application) {
     super(application);
     repository = GymLogRepository.getRepository(application);
   }

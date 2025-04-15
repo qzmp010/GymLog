@@ -19,7 +19,7 @@ public class GymLog {
   private int reps;
   private LocalDateTime date;
 
-  private  int userId;
+  private int userId;
 
   public GymLog(String exercise, double weight, int reps, int userId) {
     this.exercise = exercise;

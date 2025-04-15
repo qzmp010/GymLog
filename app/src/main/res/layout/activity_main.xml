@@ -6,7 +6,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".MainActivity"
-  android:paddingTop="100dp">
+  android:paddingTop="90dp">
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/logDisplayRecyclerView"
@@ -89,7 +89,7 @@
   <Button
     android:id="@+id/logButton"
     android:layout_width="350dp"
-    android:layout_height="125dp"
+    android:layout_height="80dp"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="24dp"
     android:contentDescription="@string/log"

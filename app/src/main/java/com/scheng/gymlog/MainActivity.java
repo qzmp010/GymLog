@@ -5,9 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import android.os.PersistableBundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,16 +12,13 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.Recycler;
 import com.scheng.gymlog.database.GymLogRepository;
 import com.scheng.gymlog.database.entities.GymLog;
 import com.scheng.gymlog.database.entities.User;
@@ -32,7 +26,6 @@ import com.scheng.gymlog.databinding.ActivityMainBinding;
 import com.scheng.gymlog.viewHolders.GymLogAdapter;
 import com.scheng.gymlog.viewHolders.GymLogViewModel;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
     gymLogViewModel = new ViewModelProvider(this).get(GymLogViewModel.class);
 
-
     RecyclerView recyclerView = binding.logDisplayRecyclerView;
     final GymLogAdapter adapter = new GymLogAdapter(new GymLogAdapter.GymLogDiff());
     recyclerView.setAdapter(adapter);
@@ -80,27 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
     updateSharedPreference();
 
-    //todo: remove
-    //binding.logDisplayTextValue.setMovementMethod(new ScrollingMovementMethod());
-    //updateDisplay();
-
     binding.logButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         getInformationFromDisplay();
         insertGymLogRecord();
-        //todo: remove below
-        //updateDisplay();
       }
     });
-
-    //todo: remove this
-//    binding.exerciseInputEditText.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        updateDisplay();
-//      }
-//    });
   }
 
   private void loginUser(Bundle savedInstanceState) {
@@ -108,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences = getSharedPreferences(
         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-    loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
+    loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key),
+        LOGGED_OUT);
 
     if (loggedInUserId == LOGGED_OUT && savedInstanceState != null
         && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
@@ -213,19 +192,6 @@ public class MainActivity extends AppCompatActivity {
     }
     GymLog log = new GymLog(exercise, weight, reps, loggedInUserId);
     repository.insertGymLog(log);
-  }
-
-  @Deprecated
-  private void updateDisplay() {
-    ArrayList<GymLog> allLogs = repository.getAllLogsByUserId(loggedInUserId);
-    if (allLogs.isEmpty()) {
-      //binding.logDisplayTextValue.setText(R.string.nothing_to_show_time_to_hit_the_gym);
-    }
-    StringBuilder sb = new StringBuilder();
-    for (GymLog log : allLogs) {
-      sb.append(log);
-    }
-    //binding.logDisplayTextValue.setText(sb.toString());
   }
 
   private void getInformationFromDisplay() {

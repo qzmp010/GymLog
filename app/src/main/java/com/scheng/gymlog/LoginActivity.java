@@ -3,7 +3,6 @@ package com.scheng.gymlog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -46,7 +45,8 @@ public class LoginActivity extends AppCompatActivity {
       if (user != null) {
         String password = binding.passwordLoginEditText.getText().toString();
         if (password.equals(user.getPassword())) {
-          startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+          startActivity(
+              MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
         } else {
           toastMaker("Invalid password");
           binding.passwordLoginEditText.setSelection(0);
