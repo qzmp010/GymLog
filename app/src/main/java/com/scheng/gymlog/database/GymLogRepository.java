@@ -12,6 +12,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import android.util.Log;
 
+/**
+ * @author Sunny Cheng
+ * CST 338 HW04: GymLog
+ * Apr 15, 2025
+ * Utilize DAO methods to access database
+ */
+
 public class GymLogRepository {
 
   private final GymLogDAO gymLogDAO;

@@ -8,6 +8,13 @@ import com.scheng.gymlog.database.GymLogDatabase;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * @author Sunny Cheng
+ * CST 338 HW04: GymLog
+ * Apr 15, 2025
+ * GymLog entity
+ */
+
 @Entity(tableName = GymLogDatabase.GYM_LOG_TABLE)
 public class GymLog {
 

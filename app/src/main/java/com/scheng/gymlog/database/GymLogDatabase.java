@@ -15,6 +15,13 @@ import com.scheng.gymlog.database.typeConverters.LocalDateTypeConverter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Sunny Cheng
+ * CST 338 HW04: GymLog
+ * Apr 15, 2025
+ * Utilize Android Room database library
+ */
+
 @TypeConverters(LocalDateTypeConverter.class)
 @Database(entities = {GymLog.class, User.class}, version = 1, exportSchema = false)
 public abstract class GymLogDatabase extends RoomDatabase {

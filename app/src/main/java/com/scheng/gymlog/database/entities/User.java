@@ -5,6 +5,13 @@ import androidx.room.PrimaryKey;
 import com.scheng.gymlog.database.GymLogDatabase;
 import java.util.Objects;
 
+/**
+ * @author Sunny Cheng
+ * CST 338 HW04: GymLog
+ * Apr 15, 2025
+ * User entity
+ */
+
 @Entity(tableName = GymLogDatabase.USER_TABLE)
 public class User {
 
